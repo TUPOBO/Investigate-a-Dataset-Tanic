@@ -289,174 +289,92 @@
 \subsubsection{数据集加载及处理}\label{ux6570ux636eux96c6ux52a0ux8f7dux53caux5904ux7406}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}125}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
-          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
-          \PY{k+kn}{from} \PY{n+nn}{pandas} \PY{k+kn}{import} \PY{n}{DataFrame}
-          \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
-          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k+kn}{as} \PY{n+nn}{sns}
-          
-          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color\PYZus{}codes}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
-          \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{titanic\PYZhy{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}68}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{from} \PY{n+nn}{pandas} \PY{k+kn}{import} \PY{n}{DataFrame}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k+kn}{as} \PY{n+nn}{sns}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color\PYZus{}codes}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{titanic\PYZhy{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}126}]:} \PY{c+c1}{\PYZsh{} 数据规模}
-          \PY{n}{data}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}69}]:} \PY{c+c1}{\PYZsh{} 数据规模}
+         \PY{n}{data}\PY{o}{.}\PY{n}{shape}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}126}]:} (891, 12)
+{\color{outcolor}Out[{\color{outcolor}69}]:} (891, 12)
 \end{Verbatim}
             
     该数据集含有12个参数和891条信息
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}127}]:} \PY{c+c1}{\PYZsh{} 查看数据集前五行的具体信息}
-          \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}70}]:} \PY{c+c1}{\PYZsh{} 查看数据集前五行的具体信息}
+         \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}127}]:}    PassengerId  \textbackslash{}
-          0            1   
-          1            2   
-          2            3   
-          3            4   
-          4            5   
-          
-             Survived  \textbackslash{}
-          0         0   
-          1         1   
-          2         1   
-          3         1   
-          4         0   
-          
-             Pclass  \textbackslash{}
-          0       3   
-          1       1   
-          2       3   
-          3       1   
-          4       3   
-          
-                                                          Name  \textbackslash{}
-          0                            Braund, Mr. Owen Harris   
-          1  Cumings, Mrs. John Bradley (Florence Briggs Th{\ldots}   
-          2                             Heikkinen, Miss. Laina   
-          3       Futrelle, Mrs. Jacques Heath (Lily May Peel)   
-          4                           Allen, Mr. William Henry   
-          
-                Sex   Age  \textbackslash{}
-          0    male  22.0   
-          1  female  38.0   
-          2  female  26.0   
-          3  female  35.0   
-          4    male  35.0   
-          
-             SibSp  Parch  \textbackslash{}
-          0      1      0   
-          1      1      0   
-          2      0      0   
-          3      1      0   
-          4      0      0   
-          
-                       Ticket  \textbackslash{}
-          0         A/5 21171   
-          1          PC 17599   
-          2  STON/O2. 3101282   
-          3            113803   
-          4            373450   
-          
-                Fare Cabin  \textbackslash{}
-          0   7.2500   NaN   
-          1  71.2833   C85   
-          2   7.9250   NaN   
-          3  53.1000  C123   
-          4   8.0500   NaN   
-          
-            Embarked  
-          0        S  
-          1        C  
-          2        S  
-          3        S  
-          4        S  
+{\color{outcolor}Out[{\color{outcolor}70}]:}    PassengerId  Survived  Pclass  \textbackslash{}
+         0            1         0       3   
+         1            2         1       1   
+         2            3         1       3   
+         3            4         1       1   
+         4            5         0       3   
+         
+                                                         Name     Sex   Age  SibSp  \textbackslash{}
+         0                            Braund, Mr. Owen Harris    male  22.0      1   
+         1  Cumings, Mrs. John Bradley (Florence Briggs Th{\ldots}  female  38.0      1   
+         2                             Heikkinen, Miss. Laina  female  26.0      0   
+         3       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1   
+         4                           Allen, Mr. William Henry    male  35.0      0   
+         
+            Parch            Ticket     Fare Cabin Embarked  
+         0      0         A/5 21171   7.2500   NaN        S  
+         1      0          PC 17599  71.2833   C85        C  
+         2      0  STON/O2. 3101282   7.9250   NaN        S  
+         3      0            113803  53.1000  C123        S  
+         4      0            373450   8.0500   NaN        S  
 \end{Verbatim}
             
-    在\texttt{Cabin}这一列出现了\texttt{NaN}，需要进行缺省值处理，同时我们可以忽略一些信息：\texttt{Name},\texttt{PassengerId},\texttt{Ticket},\texttt{Embarked}
+    在\texttt{Cabin}这一列出现了\texttt{NaN}，需要进行缺省值处理，同时我们可以忽略一些信息：\texttt{Name},\texttt{Ticket},\texttt{Embarked}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}128}]:} \PY{c+c1}{\PYZsh{} 保留数据分析时需要的信息}
-          \PY{n}{chosen\PYZus{}data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SibSp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Parch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fare}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{]}\PY{p}{]}
-          
-          \PY{c+c1}{\PYZsh{} 缺省值处理}
-          \PY{n}{clean\PYZus{}data} \PY{o}{=} \PY{n}{chosen\PYZus{}data}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
-          
-          \PY{c+c1}{\PYZsh{} 数据集信息}
-          \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}71}]:} \PY{c+c1}{\PYZsh{} 保留数据分析时需要的信息}
+         \PY{n}{chosen\PYZus{}data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PassengerId}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SibSp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Parch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fare}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{]}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} 缺省值处理}
+         \PY{n}{clean\PYZus{}data} \PY{o}{=} \PY{n}{chosen\PYZus{}data}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} 数据集信息}
+         \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}128}]:}          Survived  \textbackslash{}
-          count  714.000000   
-          mean     0.406162   
-          std      0.491460   
-          min      0.000000   
-          25\%      0.000000   
-          50\%      0.000000   
-          75\%      1.000000   
-          max      1.000000   
-          
-                     Pclass  \textbackslash{}
-          count  714.000000   
-          mean     2.236695   
-          std      0.838250   
-          min      1.000000   
-          25\%      1.000000   
-          50\%      2.000000   
-          75\%      3.000000   
-          max      3.000000   
-          
-                        Age  \textbackslash{}
-          count  714.000000   
-          mean    29.699118   
-          std     14.526497   
-          min      0.420000   
-          25\%     20.125000   
-          50\%     28.000000   
-          75\%     38.000000   
-          max     80.000000   
-          
-                      SibSp  \textbackslash{}
-          count  714.000000   
-          mean     0.512605   
-          std      0.929783   
-          min      0.000000   
-          25\%      0.000000   
-          50\%      0.000000   
-          75\%      1.000000   
-          max      5.000000   
-          
-                      Parch  \textbackslash{}
-          count  714.000000   
-          mean     0.431373   
-          std      0.853289   
-          min      0.000000   
-          25\%      0.000000   
-          50\%      0.000000   
-          75\%      1.000000   
-          max      6.000000   
-          
-                       Fare  
-          count  714.000000  
-          mean    34.694514  
-          std     52.918930  
-          min      0.000000  
-          25\%      8.050000  
-          50\%     15.741700  
-          75\%     33.375000  
-          max    512.329200  
+{\color{outcolor}Out[{\color{outcolor}71}]:}        PassengerId    Survived      Pclass         Age       SibSp  \textbackslash{}
+         count   714.000000  714.000000  714.000000  714.000000  714.000000   
+         mean    448.582633    0.406162    2.236695   29.699118    0.512605   
+         std     259.119524    0.491460    0.838250   14.526497    0.929783   
+         min       1.000000    0.000000    1.000000    0.420000    0.000000   
+         25\%     222.250000    0.000000    1.000000   20.125000    0.000000   
+         50\%     445.000000    0.000000    2.000000   28.000000    0.000000   
+         75\%     677.750000    1.000000    3.000000   38.000000    1.000000   
+         max     891.000000    1.000000    3.000000   80.000000    5.000000   
+         
+                     Parch        Fare  
+         count  714.000000  714.000000  
+         mean     0.431373   34.694514  
+         std      0.853289   52.918930  
+         min      0.000000    0.000000  
+         25\%      0.000000    8.050000  
+         50\%      0.000000   15.741700  
+         75\%      1.000000   33.375000  
+         max      6.000000  512.329200  
 \end{Verbatim}
             
     通过数据清洗后，我们可以得到一些浅显的信息：1. 可以使用的信息有714条；2.
@@ -469,59 +387,29 @@
 \paragraph{不同的因素与生还率的相关性}\label{ux4e0dux540cux7684ux56e0ux7d20ux4e0eux751fux8fd8ux7387ux7684ux76f8ux5173ux6027}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}129}]:} \PY{c+c1}{\PYZsh{} 不同列数据间的相关性}
-          \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}72}]:} \PY{c+c1}{\PYZsh{} 不同列数据间的相关性}
+         \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}129}]:}           Survived  \textbackslash{}
-          Survived  1.000000   
-          Pclass   -0.359653   
-          Age      -0.077221   
-          SibSp    -0.017358   
-          Parch     0.093317   
-          Fare      0.268189   
-          
-                      Pclass  \textbackslash{}
-          Survived -0.359653   
-          Pclass    1.000000   
-          Age      -0.369226   
-          SibSp     0.067247   
-          Parch     0.025683   
-          Fare     -0.554182   
-          
-                         Age  \textbackslash{}
-          Survived -0.077221   
-          Pclass   -0.369226   
-          Age       1.000000   
-          SibSp    -0.308247   
-          Parch    -0.189119   
-          Fare      0.096067   
-          
-                       SibSp  \textbackslash{}
-          Survived -0.017358   
-          Pclass    0.067247   
-          Age      -0.308247   
-          SibSp     1.000000   
-          Parch     0.383820   
-          Fare      0.138329   
-          
-                       Parch  \textbackslash{}
-          Survived  0.093317   
-          Pclass    0.025683   
-          Age      -0.189119   
-          SibSp     0.383820   
-          Parch     1.000000   
-          Fare      0.205119   
-          
-                        Fare  
-          Survived  0.268189  
-          Pclass   -0.554182  
-          Age       0.096067  
-          SibSp     0.138329  
-          Parch     0.205119  
-          Fare      1.000000  
+{\color{outcolor}Out[{\color{outcolor}72}]:}              PassengerId  Survived    Pclass       Age     SibSp     Parch  \textbackslash{}
+         PassengerId     1.000000  0.029340 -0.035349  0.036847 -0.082398 -0.011617   
+         Survived        0.029340  1.000000 -0.359653 -0.077221 -0.017358  0.093317   
+         Pclass         -0.035349 -0.359653  1.000000 -0.369226  0.067247  0.025683   
+         Age             0.036847 -0.077221 -0.369226  1.000000 -0.308247 -0.189119   
+         SibSp          -0.082398 -0.017358  0.067247 -0.308247  1.000000  0.383820   
+         Parch          -0.011617  0.093317  0.025683 -0.189119  0.383820  1.000000   
+         Fare            0.009592  0.268189 -0.554182  0.096067  0.138329  0.205119   
+         
+                          Fare  
+         PassengerId  0.009592  
+         Survived     0.268189  
+         Pclass      -0.554182  
+         Age          0.096067  
+         SibSp        0.138329  
+         Parch        0.205119  
+         Fare         1.000000  
 \end{Verbatim}
             
     通过\texttt{Pandas}的\texttt{corr()}函数我们可以便捷的得到各因素之间的相关性，但是因为\texttt{Sex}数据的格式为字符串，所以未显示在表格中，让我们来单独分析\textbf{性别对生还率的影响}
@@ -531,39 +419,51 @@
 首先，我们来看看男女各自的人数
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}130}]:} \PY{c+c1}{\PYZsh{} 男女人数直方图}
-          \PY{n}{Number\PYZus{}Of\PYZus{}Sex} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
-          \PY{n}{Number\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-          \PY{n}{Number\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-          \PY{n}{Number\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of male and female passengers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}73}]:} \PY{c+c1}{\PYZsh{} 男女人数}
+         \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PassengerId}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}130}]:} Text(0.5,0.98,'Number of male and female passengers')
+{\color{outcolor}Out[{\color{outcolor}73}]:} Sex
+         female    261
+         male      453
+         Name: PassengerId, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}74}]:} \PY{c+c1}{\PYZsh{} 男女人数直方图}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}74}]:} <seaborn.axisgrid.FacetGrid at 0x10d24ac8>
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    其次，分析男性和女性生还人数在总人数中所占的比例
+    根据以上的分析，我们发现乘客中的男性的人数为453人，女性人数为261人。然后，分析男性和女性生还人数在总人数中所占的比例
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}131}]:} \PY{c+c1}{\PYZsh{} 男女各自生还人数比例图}
-          \PY{n}{Survived\PYZus{}Of\PYZus{}Sex} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survived}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
-          \PY{n}{Survived\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survival Probability}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-          \PY{n}{Survived\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}75}]:} \PY{c+c1}{\PYZsh{} 男女各自生还人数比例图}
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Sex} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survived}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survival Probability}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Sex}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}131}]:} <seaborn.axisgrid.FacetGrid at 0x14f13cf8>
+{\color{outcolor}Out[{\color{outcolor}75}]:} <seaborn.axisgrid.FacetGrid at 0x117f2240>
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -571,82 +471,90 @@
 
     \paragraph{阶层和年龄对生还率的影响}\label{ux9636ux5c42ux548cux5e74ux9f84ux5bf9ux751fux8fd8ux7387ux7684ux5f71ux54cd}
 
-这次分析我们可以利用前文中的\texttt{各因素相关性表格}绘制点图，以此来分析\texttt{Pclass}和\texttt{Age}对\texttt{Survived}的影响
+接下来分析\texttt{Pclass}和\texttt{Age}对\texttt{Survived}的影响。
+首先让我们来看看各阶层的生还率是多少。
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}132}]:} \PY{c+c1}{\PYZsh{} Pclass和Survived的相关性}
-          \PY{n}{Correlation\PYZus{}of\PYZus{}Pclass\PYZus{}and\PYZus{}Survived} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pointplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data}\PY{p}{)}\PY{p}{;}
-          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survival Rate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}76}]:} \PY{c+c1}{\PYZsh{} 各阶层的生还率}
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Pclass} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pclass}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survived}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{clean\PYZus{}data} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Pclass}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Survival Rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Survived\PYZus{}Of\PYZus{}Pclass}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pclass of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}132}]:} Text(0,0.5,'Survival Rate')
+{\color{outcolor}Out[{\color{outcolor}76}]:} <seaborn.axisgrid.FacetGrid at 0x115c1b38>
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    根据上图，我们不难发现阶层越高，越容易生还。但是考虑到女性比男性生还率高，猜测会不会是\emph{阶层中，女性的比例越高，从而影响了生还率?}
-我们可以\textbf{女性在第一阶层的比例}来验证。
+    根据上图，我们不难发现阶层越高，越容易生还。但是会不会因为\textbf{乘客中第一阶层的人数较多}，从而影响了生还率呢？让我们接着分析各阶层的人数比例，看看我们的猜想是否正确。
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}133}]:} \PY{c+c1}{\PYZsh{} 提取出只包含第一阶层相关数据的数据集}
-          \PY{n}{group}  \PY{o}{=}  \PY{n}{clean\PYZus{}data} \PY{p}{[} \PY{n}{clean\PYZus{}data} \PY{p}{[} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}} \PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}  \PY{p}{]}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}134}]:} \PY{c+c1}{\PYZsh{} 第一阶层的男女比例}
-          \PY{n}{group}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100} \PY{o}{/} \PY{n}{group1}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}77}]:} \PY{c+c1}{\PYZsh{} 各阶层的人数}
+         \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PassengerId}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}134}]:} Sex
-          female    18.763797
-          male      22.295806
-          dtype: float64
+{\color{outcolor}Out[{\color{outcolor}77}]:} Pclass
+         1    186
+         2    173
+         3    355
+         Name: PassengerId, dtype: int64
 \end{Verbatim}
             
-    \textbf{结论1}：通过查看第一阶层中的男女比例发现，性别不会干扰阶层对生还率的影响。同时，阶层越高，生还率越高
-
-    接下来，通过可视化生还组和死亡组的年龄分布分析年龄对生还率有何影响。
-
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}135}]:} \PY{c+c1}{\PYZsh{} 提取生还组和死亡组的数据集}
-          \PY{n}{survived}\PY{o}{=}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
-          \PY{n}{dead}\PY{o}{=}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}136}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{survived}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age of the survived passengers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PassengerId}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pie}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{autopct} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}.0f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}136}]:} Text(0,0.5,'Frequency')
+{\color{outcolor}Out[{\color{outcolor}78}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x11dba438>
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    根据饼状图我们可以清晰的看出，第一阶层所占的比例仅为26\%，但是它的生还率却是最高的！
+考虑到我们的第一个问题的结论：女性的生还率更高。猜想：\textbf{女性在各阶层的比例}会干扰阶层对生还率的影响
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}137}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{dead}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age of the dead passengers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}79}]:} \PY{c+c1}{\PYZsh{} 提取出只包含各阶层相关数据的数据集}
+         \PY{n}{group1} \PY{o}{=} \PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{group2} \PY{o}{=} \PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{group3} \PY{o}{=} \PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pclass}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}80}]:} \PY{c+c1}{\PYZsh{} 第一阶层的男女比例}
+         \PY{n}{group1}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100} \PY{o}{/} \PY{n}{group1}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}137}]:} Text(0,0.5,'Frequency')
+{\color{outcolor}Out[{\color{outcolor}80}]:} Sex
+         female    45.698925
+         male      54.301075
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{c+c1}{\PYZsh{}第一阶层男女乘客的人数}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass1} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{group1} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass1}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass1}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}81}]:} <seaborn.axisgrid.FacetGrid at 0x114a7470>
 \end{Verbatim}
             
     \begin{center}
@@ -654,29 +562,142 @@
     \end{center}
     { \hspace*{\fill} \\}
     
-    \textbf{结论}：我们看到年龄小于15岁的孩子更有可能得救。我们可以通过计算Age和Survived的相关系数来验证我们的结论
-
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}138}]:} \PY{n}{age\PYZus{}sur} \PY{o}{=} \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
-          \PY{n}{age\PYZus{}sur}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}82}]:} \PY{n}{group2}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100} \PY{o}{/} \PY{n}{group2}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}138}]:}           Survived  \textbackslash{}
-          Survived  1.000000   
-          Age      -0.077221   
-          
-                         Age  
-          Survived -0.077221  
-          Age       1.000000  
+{\color{outcolor}Out[{\color{outcolor}82}]:} Sex
+         female    42.774566
+         male      57.225434
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}83}]:} \PY{c+c1}{\PYZsh{}第二阶层男女乘客的人数}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass2} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{group2} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass2}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass2}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}83}]:} <seaborn.axisgrid.FacetGrid at 0x11e94da0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{n}{group3}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100} \PY{o}{/} \PY{n}{group3}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}84}]:} Sex
+         female    28.732394
+         male      71.267606
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}85}]:} \PY{c+c1}{\PYZsh{}第三阶层男女乘客的人数}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass3} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{group3} \PY{p}{,}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass3}\PY{o}{.}\PY{n}{set\PYZus{}ylabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{Number\PYZus{}Of\PYZus{}Sex\PYZus{}in\PYZus{}Pclass3}\PY{o}{.}\PY{n}{set\PYZus{}xlabels}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sex of passengers}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}85}]:} <seaborn.axisgrid.FacetGrid at 0x11ec3a90>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    由以上三幅图表可以看出：女性在各个阶层中所占的比例都小于男性。
+
+\textbf{结论1}：虽然第一阶层人数的比例为26\%，但是生还率却是最高。其次性别不会干扰阶层对生还率的影响。
+
+    接下来，通过可视化生还组和死亡组的年龄分布分析年龄对生还率有何影响。
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}86}]:} \PY{c+c1}{\PYZsh{} 提取生还组和死亡组的数据集}
+         \PY{n}{survived}\PY{o}{=}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{dead}\PY{o}{=}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{n}{clean\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}87}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{survived}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age of the survived passengers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}87}]:} Text(0,0.5,'Frequency')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{dead}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age of the dead passengers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}88}]:} Text(0,0.5,'Frequency')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{结论2}：我们看到年龄小于15岁的孩子更有可能得救。我们可以通过计算Age和Survived的相关系数来验证我们的结论
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{n}{age\PYZus{}sur} \PY{o}{=} \PY{n}{clean\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Survived}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{age\PYZus{}sur}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}89}]:}           Survived       Age
+         Survived  1.000000 -0.077221
+         Age      -0.077221  1.000000
 \end{Verbatim}
             
     ``年龄''的相关系数为-0.07，这意味着它与``生存''是相反的。刚好验证了我们的结论
 
     \subsubsection{总结}\label{ux603bux7ed3}
 
+通过分析年龄、性别以及阶层对生还率的影响发现：1.女性的生还率高；2.阶层越高，生还率也越高（未收到女性在各阶层的比例影响）；3.从我们所得的数据中可以观察到如果你的年龄低于15岁，那么你的生还率更高
+
 其实我们还可以提出更多的猜想，比如：水手的生还率是否更高呢？但是发现数据集中并没有相关的数据。其次，根据维基百科，大约有1317名乘客，但数据集只有891名乘客，这严重限制了我们得出明确结论的能力。这就体现了数据局限性对数据分析准确率的重大影响。
+
+    \subsubsection{参考}\label{ux53c2ux8003}
+
+https://discussions.udacity.com
+
+https://stackoverflow.com
+
+https://matplotlib.org
+
+https://seaborn.pydata.org/index.html
+
+https://github.com
 
 
     % Add a bibliography block to the postdoc
